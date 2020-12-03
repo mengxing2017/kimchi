@@ -35,6 +35,7 @@ SUPPORTED_ARCHS = {
     'power': ('ppc', 'ppc64'),
     'ppc64le': ('ppc64le'),
     's390x': ('s390x'),
+    'arm': ('aarch64'),
 }
 
 # Memory devices slot limits by architecture
@@ -46,6 +47,7 @@ MEM_DEV_SLOTS = {
     'i686': 256,
     'i386': 256,
     's390x': 256,
+    'aarch64': 256,
 }
 
 
@@ -100,6 +102,26 @@ template_specs = {
         'old': dict(disk_bus='virtio', nic_model='virtio', cdrom_bus='scsi'),
         'modern': dict(disk_bus='virtio', nic_model='virtio', cdrom_bus='scsi'),
     },
+    'arm': {
+        'old': dict(
+            disk_bus='virtio',
+            nic_model='virtio',
+            cdrom_bus='scsi',
+            kbd_bus='usb',
+            kbd_type='keyboard',
+            mouse_bus='usb',
+            tablet_bus='usb',
+        ),
+        'modern': dict(
+            disk_bus='virtio',
+            nic_model='virtio',
+            cdrom_bus='scsi',
+            kbd_bus='usb',
+            kbd_type='keyboard',
+            mouse_bus='usb',
+            tablet_bus='usb',
+        ),
+    },
 }
 
 
@@ -134,6 +156,17 @@ modern_version_bases = {
         'ubuntu': '14.04',
         'opensuse': '13.1',
         'sles': '11sp3',
+    },
+    'arm': {
+        'debian': '6.0',
+        'ubuntu': '7.10',
+        'opensuse': '10.3',
+        'centos': '5.3',
+        'rhel': '6.0',
+        'fedora': '16',
+        'gentoo': '0',
+        'sles': '11',
+        'arch': '0',
     },
 }
 
