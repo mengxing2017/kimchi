@@ -407,9 +407,6 @@ class VMTemplate(object):
         sound = """
             <sound model='%(sound_model)s' />
         """
-        mouse = """
-            <input type='mouse' bus='%(mouse_bus)s'/>
-        """
 
         keyboard = """
             <input type='%(kbd_type)s' bus='%(kbd_bus)s'> </input>
@@ -426,8 +423,6 @@ class VMTemplate(object):
         """
 
         input_output = ''
-        if 'mouse_bus' in self.info.keys():
-            input_output += mouse % self.info
         if 'kbd_bus' in self.info.keys():
             input_output += keyboard % self.info
         if 'tablet_bus' in self.info.keys():
@@ -532,17 +527,19 @@ class VMTemplate(object):
           %(cpu_info_xml)s
           <os>
             <type arch='%(arch)s'>hvm</type>
+            <loader readonly='yes' type='pflash'>/usr/share/AAVMF/AAVMF_CODE.fd</loader>
+            <nvram>/var/lib/libvirt/qemu/nvram/%(name)s.fd</nvram>
             %(boot_order)s
           </os>
           <features>
-            <acpi/>
+            <!-- <acpi/> -->
             <apic/>
-            <pae/>
+            <!-- <pae/> -->
           </features>
           <clock offset='utc'/>
           <on_poweroff>destroy</on_poweroff>
           <on_reboot>restart</on_reboot>
-          <on_crash>restart</on_crash>
+          <on_crash>destroy</on_crash>
           <devices>
             %(disks)s
             %(cdroms)s
@@ -550,9 +547,7 @@ class VMTemplate(object):
             %(interfaces)s
             %(graphics)s
             %(input_output)s
-            %(usb_controller)s
             %(serial)s
-            <memballoon model='virtio' />
           </devices>
         </domain>
         """

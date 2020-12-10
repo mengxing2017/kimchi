@@ -106,20 +106,16 @@ template_specs = {
         'old': dict(
             disk_bus='virtio',
             nic_model='virtio',
-            cdrom_bus='scsi',
-            kbd_bus='usb',
             kbd_type='keyboard',
-            mouse_bus='usb',
-            tablet_bus='usb',
+            kbd_bus='virtio',
+            cdrom_bus='scsi'
         ),
         'modern': dict(
             disk_bus='virtio',
             nic_model='virtio',
             cdrom_bus='scsi',
-            kbd_bus='usb',
-            kbd_type='keyboard',
-            mouse_bus='usb',
-            tablet_bus='usb',
+            kbd_bus='virtio',
+            kbd_type='keyboard'
         ),
     },
 }
